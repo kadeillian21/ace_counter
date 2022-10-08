@@ -40,23 +40,8 @@ class Deck
     while aces == false
       deck = Deck.new
       hand = deck.hand
-      if hand[0] == "Ace of Diamonds" || hand[0] == "Ace of Clubs" || hand[0] == "Ace of Hearts" || hand[0] == "Ace of Spades"
-        if hand[1] == "Ace of Diamonds" || hand[1] == "Ace of Clubs" || hand[1] == "Ace of Hearts" || hand[1] == "Ace of Spades"
-          if hand[2] == "Ace of Diamonds" || hand[2] == "Ace of Clubs" || hand[2] == "Ace of Hearts" || hand[2] == "Ace of Spades"
-            if hand[3] == "Ace of Diamonds" || hand[3] == "Ace of Clubs" || hand[3] == "Ace of Hearts" || hand[3] == "Ace of Spades"
-              aces = true
-              p hand
-            else
-              aces = false
-            end
-          else
-            aces = false
-          end
-        else
-          aces = false
-        end
-      else
-        aces = false
+      if hand.all?{|c| c =~ /Ace/}
+        aces == true
       end
       @program_run_count += 1
     end
@@ -64,11 +49,13 @@ class Deck
   end
 
   def how_many_times_until_one
+    start_time = Time.now
     until @program_run_count == 1
       ace_check
     end
+    p Time.now - start_time
   end
 end
 
 deck = Deck.new
-deck.how_many_times_until_one
+deck.ace_check
