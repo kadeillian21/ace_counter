@@ -35,7 +35,7 @@ class Deck
   end
 
   def ace_check
-    program_run_count = 0
+    @program_run_count = 0
     aces = false
     while aces == false
       deck = Deck.new
@@ -58,12 +58,17 @@ class Deck
       else
         aces = false
       end
-      program_run_count += 1
+      @program_run_count += 1
     end
-    puts program_run_count
+    puts @program_run_count
   end
 
+  def how_many_times_until_one
+    until @program_run_count == 1
+      ace_check
+    end
+  end
 end
 
 deck = Deck.new
-deck.ace_check
+deck.how_many_times_until_one
