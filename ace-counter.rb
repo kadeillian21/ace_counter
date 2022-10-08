@@ -36,12 +36,11 @@ class Deck
 
   def ace_check
     @program_run_count = 0
-    aces = false
-    while aces == false
+    while true
       deck = Deck.new
       hand = deck.hand
       if hand.all?{|c| c =~ /Ace/}
-        aces == true
+        break
       end
       @program_run_count += 1
     end
